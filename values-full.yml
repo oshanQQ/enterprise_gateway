@@ -1,0 +1,34 @@
+service:
+  type: "NodePort"
+  ports:
+    # The primary port on which Enterprise Gateway is servicing requests.
+    - name: "http"
+      port: 8887
+      targetPort: 8887
+    #  nodePort: 32652 # optional nodePort
+    # The  port on which Enterprise Gateway will receive kernel connection info responses.
+    - name: "http-response"
+      port: 8877
+      targetPort: 8877
+    #  nodePort: 30481 # optional nodePort
+
+deployment:
+  # Update CPU/Memory as needed
+  resources:
+    limits:
+      cpu: 2
+      memory: 10Gi
+    requests:
+      cpu: 1
+      memory: 2Gi
+  # Update to deploy multiple replicas of EG.
+  replicas: 2
+  # Give Enteprise Gateway some time to gracefully shutdown
+  terminationGracePeriodSeconds: 60
+
+kip:
+  enabled: false # turn this off, if running DaemonSets is restricted by your cluster Administrator
+
+ingress:
+  enabled: false
+

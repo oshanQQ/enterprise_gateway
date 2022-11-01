@@ -31,12 +31,12 @@ service:
   type: "NodePort"
   externalIPs:
     # Master public IP on which to expose EG.
-    k8sMasterPublicIP: ''
+    k8sMasterPublicIP: '192.168.109.23'
   ports:
     # The primary port on which Enterprise Gateway is servicing requests.
     - name: "http"
-      port: 8888
-      targetPort: 8888
+      port: 8887
+      targetPort: 8887
       # nodePort: 32652 # optional nodePort
     # The  port on which Enterprise Gateway will receive kernel connection info responses.
     - name: "http-response"
